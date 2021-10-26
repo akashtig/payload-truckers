@@ -1,0 +1,55 @@
+
+<h1 class="pt-4 pb-4" >Trucks</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Truck type</th>
+      <th>Year</th>
+      <th>Capacity</th>
+      <th>Reservation Status</th>
+      <% if session[:admin] %>
+        <th class="text-center">Show</th>
+        <th class="text-center">Edit</th>
+        <th class="text-center">Delete</th>
+      <% else %>
+        <th class="text-center"></th>
+      <% end %> 
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trucks.each do |truck| %>
+      <% if truck.company_id == session[:company_id] %>
+        <tr class=" align-middle">
+          <td><%= truck.company_id %></td>
+          <td><%= truck.truck_type %></td>
+          <td><%= truck.year %></td>
+          <td><%= truck.capacity %></td>
+          <td>
+            <% if truck.reserved %>
+              <% reservation_text = "Delete Reservation" %>
+              <%= fa_icon "lock 2x", text: "Reserved", class: "text-danger align-middle" %>
+            <% else %>
+              <% reservation_text = "Make Reservation" %>
+              <%= fa_icon "unlock 2x", text: "Available", class: "text-success  align-middle" %>
+            <% end %>
+            </td>
+          <% if session[:admin] %>
+            <td class="text-center"><%= link_to truck, class: "text-white btn btn-success" do fa_icon "eye" end %></td>
+            <td class="text-center"><%= link_to edit_truck_path(truck), class: "text-white btn btn-primary" do  fa_icon "edit"  end %></td>
+            <td class="text-center"><%= link_to truck, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-white btn btn-danger" do fa_icon "trash" end %></td>
+          <% else %>
+            <td class="text-center"><%= link_to truck, method: :post, class: "text-white btn btn-primary" do fa_icon "", text: reservation_text  end %></td>
+          <% end %> 
+        </tr>   
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Truck', new_truck_path, class: "btn btn-secondary text-white" %>

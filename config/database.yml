@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: 'truckers_development'
+  username: 'postgres'
+  password: 'p@ssw0rd'
+  host: localhost
+  port: 5432

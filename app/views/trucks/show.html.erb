@@ -1,0 +1,31 @@
+<table class="table table-striped mx-auto w-auto">
+
+<tr>
+<td>Name</td>
+<td><%= @truck.name %></td>
+</tr>
+
+<tr>
+<td>Truck type</td>
+<td><%= @truck.truck_type %></td>
+</tr>
+
+<tr>
+<td>Year</td>
+<td><%= @truck.year %></td>
+</tr>
+
+<tr>
+<td>Capacity</td>
+<td><%= @truck.capacity %></td>
+</tr>
+
+<tr>
+<td>Reserved</td>
+<td><%= @truck.reserved %></td>
+</tr>
+
+</table>
+
+<%= link_to 'Edit', edit_truck_path(@truck), class: "btn btn-secondary text-white" %> |
+<%= link_to 'Back', trucks_path, class: "btn btn-light" %>

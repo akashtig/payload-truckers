@@ -1,0 +1,27 @@
+<table class="table table-striped mx-auto w-auto">
+
+<tr>
+<td>Name</td>
+<td><%= @user.name %></td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td><%= @user.email %></td>
+</tr>
+
+<tr>
+<td>Phone Number</td>
+<td><%= @user.phone_number %></td>
+</tr>
+
+<tr>
+<td>Admin</td>
+<td><%= @user.admin %></td>
+</tr>
+
+
+</table>
+
+<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-secondary text-white" %> |
+<%= link_to 'Back', users_path, class: "btn btn-light" %>

@@ -1,0 +1,31 @@
+<%= bootstrap_form_with(model: truck, inline_errors: true) do |form| %>
+
+  <div class="field form-group mb-3">
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.text_field :truck_type %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.text_field :year %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.text_field :capacity %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.hidden_field :company_id, value: session[:company_id] %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.check_box :reserved %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<%= bootstrap_form_with(model: user, inline_errors: true) do |form| %>
+
+  <% password_empty = '' %>
+
+
+  <div class="field form-group mb-3">
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field form-group">
+    <% if session[:company_id] %>
+      <%= form.hidden_field :company_id, value: session[:company_id] %>
+    <% else %>
+      <%= form.text_field :company_id %>
+    <% end %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field form-group mb-3">
+    <%= form.text_field :phone_number, class: "form-control" %>
+  </div>
+
+  <% if !hide_password %>
+  <div class="field form-group mb-3">
+    
+      <%= form.text_field :password, help: "Must be at least 6 characters long", value: password_empty %>
+    
+  </div>
+  <% end %>
+  
+  <% if session[:admin] %>
+    <div class="field form-group mb-3">
+      <%= form.check_box :admin %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

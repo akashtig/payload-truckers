@@ -1,0 +1,41 @@
+ 
+<h1 class="pt-4 pb-4" >Users</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone number</th>
+      <th class="text-center">Admin</th>
+      <th class="text-center">Show</th>
+      <th class="text-center">Edit</th>
+      <th class="text-center">Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user.company_id == session[:company_id] %>
+      <tr class=" align-middle">
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_number %></td>
+        <td class="text-center"><% if user.admin %>
+              <%= fa_icon "check ", class: "text-success" %>
+            <% else %> 
+              <%= fa_icon "times ", class: "text-danger" %>
+            <% end %>
+        </td>
+        <td class="text-center"><%= link_to user, class: "text-white btn btn-success" do fa_icon "eye" end %></td>
+        <td class="text-center"><%= link_to edit_user_path(user), class: "text-white btn btn-primary" do  fa_icon "edit"  end %></td>
+        <td class="text-center"><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-white btn btn-danger" do fa_icon "trash" end %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path, class: "btn btn-secondary text-white" %>

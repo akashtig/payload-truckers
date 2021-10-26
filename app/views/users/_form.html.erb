@@ -31,11 +31,9 @@
   </div>
   <% end %>
   
-  <% if session[:admin] %>
     <div class="field form-group mb-3">
       <%= form.check_box :admin %>
     </div>
-  <% end %>
 
   <div class="actions">
     <%= form.submit %>
